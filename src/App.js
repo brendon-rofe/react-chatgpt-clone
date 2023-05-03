@@ -20,7 +20,7 @@ function App() {
             <input/>
             <div id="submit">➢</div>
           </div>
-          <p className="info">ChatGPT May 04 Version</p>
+          <p className="info">BrendonGPT may produce inaccurate information about people, places, or facts. BrendonGPT Mar 23 Version</p>
         </div>
       </section>
     </div>
