@@ -4,6 +4,7 @@ function App() {
       <section className="side-bar">
         <button>+ New Chat</button>
         <ul className="history">
+          <li>Some history here</li>
         </ul>
         <nav>
           <p>Made by Brendon</p>
