@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const port = process.env.PORT;
+const port = 8000;
 
 const apiKey = process.env.OPENAI_API_KEY;
 
@@ -20,7 +20,7 @@ app.post('/completions', async (req, res) => {
     },
     body: JSON.stringify({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: 'How are you?' }],
+      messages: [{ role: 'user', content: req.body.message }],
       max_tokens: 100,
     })
   }

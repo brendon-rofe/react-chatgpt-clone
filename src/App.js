@@ -1,10 +1,14 @@
+import { useState, useEffect } from "react";
+
 function App() {
+  const [value, setValue] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const getMessages = async () => {
     const options = {
       method:'POST',
       body: JSON.stringify({
-        message: 'Hello, how are you?'
+        message: value
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -13,11 +17,13 @@ function App() {
     try {
       const response = await fetch('https://8000-brendonrofe-reactchatgp-b3b91exod4b.ws-eu96b.gitpod.io/completions', options);
       const data = await response.json();
-      console.log(data);
+      setMessage(data.choices[0].message);
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log(message);
 
   return (
     <div className="app">
@@ -37,7 +43,7 @@ function App() {
         </ul>
         <div className="bottom-section">
           <div className="input-container">
-            <input/>
+            <input value={value} onChange={(e) => setValue(e.target.value)}/>
             <div id="submit" onClick={getMessages}>➢</div>
           </div>
           <p className="info">BrendonGPT may produce inaccurate information about people, places, or facts. BrendonGPT Mar 23 Version</p>
