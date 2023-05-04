@@ -1,6 +1,8 @@
-const PORT = 8000;
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
+const port = process.env.PORT;
 
 const app = express();
 
@@ -15,6 +17,6 @@ app.post('/completions', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port: ${PORT}`);
+app.listen(port, () => {
+  console.log(`App listening on port: ${port}`);
 });
