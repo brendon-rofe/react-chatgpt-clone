@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 function App() {
   const [value, setValue] = useState(null);
   const [message, setMessage] = useState(null);
+  const [previousChats, setPreviousChats] = useState([]);
+  const [currentTitle, setCurrentTitle] = useState([]);
 
   const getMessages = async () => {
     const options = {
@@ -23,7 +25,28 @@ function App() {
     }
   };
 
-  console.log(message);
+  useEffect(() => {
+    console.log(currentTitle, value, message);
+    if(!currentTitle && value && message) {
+      setCurrentTitle(value);
+    }
+    if(currentTitle && value && message) {
+      setPreviousChats(prevChats => (
+        [...prevChats, 
+          {
+            title: currentTitle,
+            role: 'user',
+            content: value
+          },
+          {
+            title: currentTitle,
+            role: message.role,
+            content: message.content
+          }
+        ]
+      ));
+    }
+  }, [message, currentTitle]);
 
   return (
     <div className="app">
